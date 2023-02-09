@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task_app/constants/colors.dart';
 import 'package:task_app/data_provider/data_provider.dart';
 import 'package:task_app/features/dashboard/widgets/custom_card.dart';
-import 'package:task_app/models/user_model.dart';
+import 'package:task_app/models/task_data_model.dart';
 import 'package:task_app/utils/loader.dart';
 
 class DashboardView extends ConsumerWidget {
@@ -47,7 +47,7 @@ class DashboardView extends ConsumerWidget {
       ),
       body: data.when(
         data: (data) {
-          List<UserModel> userList = data.map((e) => e).toList();
+          List<TaskDataModel> dataList = data.map((e) => e).toList();
           return SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -55,12 +55,12 @@ class DashboardView extends ConsumerWidget {
                 children: [
                   Expanded(
                     child: ListView.builder(
-                      itemCount: userList.length,
+                      itemCount: dataList.length,
                       itemBuilder: (context, index) {
                         return CustomCard(
-                          title: userList[index].caption,
-                          time: userList[index].createdAt,
-                          uri: userList[index].videoUrl,
+                          title: dataList[index].caption,
+                          time: dataList[index].createdAt,
+                          uri: dataList[index].videoUrl,
                         );
                       },
                     ),

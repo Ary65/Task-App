@@ -1,19 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class UserModel {
+class TaskDataModel {
   final int id;
   final String caption;
   final String createdAt;
   final String videoUrl;
 
-  UserModel({
+  TaskDataModel({
     required this.id,
     required this.caption,
     required this.createdAt,
     required this.videoUrl,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
+  factory TaskDataModel.fromJson(Map<String, dynamic> json) {
+    return TaskDataModel(
       id: json['id'],
       caption: json['caption'],
       createdAt: json['created_at'] ?? 'created_at',
