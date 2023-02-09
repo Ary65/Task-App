@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:ui';
+import 'package:cached_video_player/cached_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:task_app/constants/colors.dart';
-import 'package:video_player/video_player.dart';
 
 class CustomCard extends StatefulWidget {
   final String title;
@@ -20,13 +20,13 @@ class CustomCard extends StatefulWidget {
 }
 
 class _CustomCardState extends State<CustomCard> {
-  late VideoPlayerController _controller;
+  late CachedVideoPlayerController _controller;
   bool isMusicOn = true;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(widget.uri)
+    _controller = CachedVideoPlayerController.network(widget.uri)
       ..initialize().then((_) {
         setState(() {});
       });
@@ -75,10 +75,10 @@ class _CustomCardState extends State<CustomCard> {
             ),
           ),
           Positioned(
-            top: 55,
-            left: 8,
-            right: 8,
-            bottom: 5,
+            top: h * .07,
+            left: w * .02,
+            right: w * .02,
+            bottom: h * .009,
             child: _controller.value.isInitialized
                 ? AspectRatio(
                     aspectRatio: _controller.value.aspectRatio,
@@ -86,7 +86,7 @@ class _CustomCardState extends State<CustomCard> {
                       height: h * 35,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
-                        child: VideoPlayer(
+                        child: CachedVideoPlayer(
                           _controller,
                         ),
                       ),
@@ -107,10 +107,10 @@ class _CustomCardState extends State<CustomCard> {
                 )),
           ),
           Positioned(
-            top: 100,
-            left: 100,
-            right: 100,
-            bottom: 5,
+            top: h * .09,
+            left: w * .04,
+            right: w * .04,
+            bottom: h * .01,
             child: GestureDetector(
               onTap: () {
                 setState(() {
@@ -121,20 +121,22 @@ class _CustomCardState extends State<CustomCard> {
               },
               child: Icon(
                 _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-                size: 70,
+                size: w * .15,
                 color: Colors.white,
               ),
             ),
           ),
           Positioned(
-            top: 300,
-            bottom: 5,
-            left: 8,
-            right: 8,
+            top: h * .35,
+            bottom: h * .009,
+            left: w * .02,
+            right: w * .02,
             child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(8),
-                  bottomRight: Radius.circular(8)),
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(w * .02),
+                  bottomRight: Radius.circular(
+                    w * .02,
+                  )),
               child: BackdropFilter(
                 filter: ImageFilter.blur(
                   sigmaX: 5,
@@ -148,48 +150,50 @@ class _CustomCardState extends State<CustomCard> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
-                          children: const [
+                          children: [
                             Image(
-                              image: AssetImage('assets/icons/comment.png'),
-                              width: 30,
+                              image:
+                                  const AssetImage('assets/icons/comment.png'),
+                              width: w * .08,
                               color: Colors.white,
                             ),
-                            SizedBox(width: 8),
+                            SizedBox(width: w * .017),
                             Text(
                               '10',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 22,
+                                fontSize: w * .06,
                               ),
                             ),
-                            SizedBox(width: 8),
+                            SizedBox(width: w * .025),
                             Image(
-                              image: AssetImage(
+                              image: const AssetImage(
                                   'assets/icons/love-hand-drawn-heart-symbol-outline.png'),
-                              width: 25,
+                              width: w * .065,
                               color: Colors.white,
                             ),
-                            SizedBox(width: 8),
+                            SizedBox(width: w * .015),
                             Text(
                               '122',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 22,
+                                fontSize: w * .06,
                               ),
                             ),
                           ],
                         ),
                         Row(
-                          children: const [
+                          children: [
                             Image(
-                              image: AssetImage('assets/icons/send.png'),
-                              width: 25,
+                              image: const AssetImage('assets/icons/send.png'),
+                              width: w * .06,
                               color: Colors.white,
                             ),
-                            SizedBox(width: 12),
+                            SizedBox(width: w * .03),
                             Image(
-                              image: AssetImage('assets/icons/bookmark.png'),
-                              width: 25,
+                              image:
+                                  const AssetImage('assets/icons/bookmark.png'),
+                              width: w * .06,
                               color: Colors.white,
                             ),
                           ],
