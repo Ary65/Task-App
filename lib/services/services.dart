@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import 'package:task_app/constants/endpoint.dart';
 import 'package:task_app/models/task_data_model.dart';
 
-final userProvider = Provider.autoDispose<ApiServices>((ref) => ApiServices());
+final dataProvider = Provider.autoDispose<ApiServices>((ref) => ApiServices());
 
 class ApiServices {
   Future<List<TaskDataModel>> getUSers() async {

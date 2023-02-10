@@ -11,7 +11,7 @@ class DashboardView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(userDataProvider);
+    final data = ref.watch(taskDataProvider);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
